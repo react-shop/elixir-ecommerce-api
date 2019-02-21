@@ -15,20 +15,12 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    if params[:username] && params[:password]
-      user = User.find_by(username: params[:username])
+    @user = User.new(user_params)
 
-      if user && user.authenticate(params[:password])
-        response = {
-          name: user.name,
-          access: user.access
-        }
-        render json: response, status: 200
-      else
-        render json: { error: 'Dados inválidos.' }, status: :unauthorized
-      end
+    if @user.save
+      render json: @user, status: :created, location: @user
     else
-      render json: { error: 'Dados inválidos.' }, status: :unauthorized
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 

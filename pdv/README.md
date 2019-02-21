@@ -30,4 +30,7 @@ Things you may want to cover:
 ```rails db:migrate```
 ```rails db:seed```
 
+user: viniarruda
+pass: a123
+
 

@@ -21,6 +21,10 @@ gem 'pg', '~> 0.18.4'
 gem 'faker'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
+# Use Jwt for tokens
+gem 'jwt'
+# Use simple command for create services
+gem 'simple_command'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
