@@ -23,3 +23,13 @@ User.create!(
   access: 1, 
   name: 'Vinicius Arruda')
 
+10.times  do
+	Product.create({
+		sku: Faker::Number.number(6),
+    item: Faker::Book.title,
+    color: Faker::Color.hex_color,
+    size: 'M',
+    cod: Faker::Number.between(1, 50),
+    stock: Faker::Number.between(1, 20)
+	})
+end

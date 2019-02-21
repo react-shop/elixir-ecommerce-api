@@ -5,12 +5,12 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    render json: @products
+    render json: {data: @products}
   end
 
   # GET /products/1
   def show
-    render json: @product
+    render json: {data: @product}
   end
 
   # POST /products
