@@ -11,9 +11,9 @@ class AuthController < ApplicationController
         access: user.access,
         auth_token: command.result
       }
-      render json: response, status: 200
+      render json: { data: response } , status: 200
     else
-      render json: { error: command.errors }, status: :unauthorized
+      render json: { errors: command.errors }, status: :unauthorized
     end
   end
 

@@ -25,6 +25,8 @@ gem 'bcrypt'
 gem 'jwt'
 # Use simple command for create services
 gem 'simple_command'
+# Use to active cors
+gem 'rack-cors', require: 'rack/cors'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
