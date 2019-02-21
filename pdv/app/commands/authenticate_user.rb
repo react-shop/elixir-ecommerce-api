@@ -23,6 +23,6 @@ class AuthenticateUser
   end
 end
 
-# O comando leva os parâmetros e inicializa uma instância de classe com emaile passwordatributos que são acessíveis dentro da classe. O método privado userusa as credenciais para verificar se o usuário existe no banco de dados usando User.find_by.
+# O comando leva os parâmetros e inicializa uma instância de classe com username e password atributos que são acessíveis dentro da classe. O método privado userusa as credenciais para verificar se o usuário existe no banco de dados usando User.find_by.
 
 # Se o usuário for encontrado, o método usa o authenticatemétodo interno. Esse método pode ser disponibilizado colocando-se has_secure_password no modelo User para verificar se a senha do usuário está correta. Se tudo for verdade, o usuário será retornado. Caso contrário, o método retornará nil.
