@@ -30,6 +30,8 @@ User.create!(
     color: Faker::Color.hex_color,
     size: 'M',
     cod: Faker::Number.between(1, 50),
-    stock: Faker::Number.between(1, 20)
+    stock: Faker::Number.between(1, 20),
+    price: Faker::Number.decimal(2),
+    image: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/38b64177-e45a-4594-b08f-6e3867bec3db/dc4jxz3-28497fff-312c-48f8-9b3b-4fa8a65a34a9.png/v1/fill/w_888,h_899,strp/katsuki_bakugou_chibi_by_staticblu_dc4jxz3-pre.png'
 	})
 end
