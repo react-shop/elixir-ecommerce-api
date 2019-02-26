@@ -8,6 +8,7 @@ class AuthController < ApplicationController
       user = User.find_by(username: params[:username])
       response = {
         name: user.name,
+        created_at: user.created_at,
         access: user.access,
         auth_token: command.result
       }
