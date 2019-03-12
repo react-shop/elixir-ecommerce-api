@@ -23,12 +23,24 @@ Things you may want to cover:
 
 * ...
 
+### Generate Api
+```rails new myarticle --api```
 
-```rails new myartecle --api```
+### Start postgresql
 ```service postgresql start```
+
+### Create scaffold
 ```rails g scaffold TYPE field1:integer field2:string```
+
+### Run after bundle install
 ```rails db:migrate```
 ```rails db:seed```
+
+### Run project
+```rails s```
+
+### Create migrate
+```rails g migration AddQuantityToProducts```
 
 user: viniarruda
 pass: a123
