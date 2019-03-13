@@ -29,6 +29,7 @@ Things you may want to cover:
 ```rails g scaffold TYPE field1:integer field2:string```
 ```rails db:migrate```
 ```rails db:seed```
+```rails s```
 
 user: viniarruda
 pass: a123
