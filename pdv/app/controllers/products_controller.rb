@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_request, :only => [:index, :show]
+  skip_before_action :authenticate_request, :only => [:index, :show, :highlights]
 
   # GET /products
   def index
@@ -39,6 +39,12 @@ class ProductsController < ApplicationController
     @product.destroy
   end
 
+  def highlights
+    @highlights = Product.where(spotlight: true)
+
+    render json: {data: @highlights}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -47,6 +53,7 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:sku, :item, :color, :size, :cod, :stock)
+      params.require(:product).permit(:sku, :item, :color, :size, :cod, :stock, images: [])
     end
+
 end
