@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :api_ecommerce, ApiEcommerce.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "admin",
+  password: "admin",
   database: "api_ecommerce_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
