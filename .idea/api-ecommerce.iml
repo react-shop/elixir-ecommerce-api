@@ -13,11 +13,14 @@
       <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/bcrypt_elixir" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/comeonin" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/db_connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sql" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/elixir_make" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gettext" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jason" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mime" />
@@ -29,6 +32,24 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_cowboy" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_crypto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/postgrex" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/bcrypt_elixir" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/comeonin" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/connection" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/db_connection" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/decimal" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto_sql" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/elixir_make" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/gettext" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/myxql" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/phoenix" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/phoenix_ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/phoenix_pubsub" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/plug" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/plug_cowboy" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/plug_crypto" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -64,5 +85,19 @@
     <orderEntry type="library" name="geo" level="project" />
     <orderEntry type="library" name="binpp" level="project" />
     <orderEntry type="library" name="dialyxir" level="project" />
+    <orderEntry type="library" name="bcrypt_elixir" level="project" />
+    <orderEntry type="library" name="comeonin" level="project" />
+    <orderEntry type="library" name="elixir_make" level="project" />
+    <orderEntry type="library" name="guardian" level="project" />
+    <orderEntry type="library" name="jose" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="excoveralls" level="project" />
+    <orderEntry type="library" name="base64url" level="project" />
+    <orderEntry type="library" name="jsone" level="project" />
+    <orderEntry type="library" name="jsx" level="project" />
+    <orderEntry type="library" name="libdecaf" level="project" />
+    <orderEntry type="library" name="libsodium" level="project" />
+    <orderEntry type="library" name="ojson" level="project" />
+    <orderEntry type="library" name="poison" level="project" />
   </component>
 </module>
