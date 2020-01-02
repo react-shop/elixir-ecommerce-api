@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="comeonin" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/test/lib/comeonin/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/comeonin/ebin" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/comeonin/lib" />
+      <root url="file://$PROJECT_DIR$/deps/comeonin/priv" />
+    </SOURCES>
+  </library>
+</component>
