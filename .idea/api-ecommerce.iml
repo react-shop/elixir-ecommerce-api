@@ -19,6 +19,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/db_connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_enum" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/elixir_make" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gettext" />
@@ -40,6 +41,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/db_connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto_enum" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/elixir_make" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/gettext" />

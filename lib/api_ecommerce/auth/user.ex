@@ -21,8 +21,8 @@ defmodule ApiEcommerce.Auth.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :is_active, :password])
-    |> validate_required([:email, :is_active, :password])
+    |> cast(attrs, [:name, :email, :status, :role, :password])
+    |> validate_required([:email, :status, :role, :password])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 6)
     |> validate_confirmation(:password) # Check that password === password_confirmation
