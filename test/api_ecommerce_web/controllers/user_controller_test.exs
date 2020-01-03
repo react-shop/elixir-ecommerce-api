@@ -6,21 +6,19 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
   @create_attrs %{
     email: "some@email",
-    is_active: true,
     password: "some password",
     password_confirmation: "some password"
   }
   @update_attrs %{
     email: "some@updated.email",
-    is_active: false,
     password: "some updated password",
     password_confirmation: "some updated password"
   }
   @invalid_attrs %{email: nil, is_active: nil, password: nil}
   @current_user_attrs %{
     email: "some_current@user.email",
-    is_active: true,
-    password: "some current user password"
+    password: "some current user password",
+    password_confirmation: "some current user password"
   }
 
   def fixture(:user) do
@@ -45,7 +43,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
                %{
                  "id" => current_user.id,
                  "email" => current_user.email,
-                 "is_active" => current_user.is_active
+                 "status" => current_user.status |> Atom.to_string()
                }
              ]
     end
@@ -61,7 +59,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
                "id" => id,
                "email" => @create_attrs.email,
-               "is_active" => @create_attrs.is_active,
+               "status" => "active",
              }
     end
 
@@ -83,7 +81,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
                "id" => id,
                "email" => @update_attrs.email,
-               "is_active" => @update_attrs.is_active
+               "status" => user.status |> Atom.to_string()
              }
     end
 
@@ -113,7 +111,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
       assert json_response(conn, 200)["data"] == %{
                "id" => current_user.id,
-               "is_active" => current_user.is_active,
+               "status" => current_user.status |> Atom.to_string(),
                "email" => current_user.email}
     end
 
