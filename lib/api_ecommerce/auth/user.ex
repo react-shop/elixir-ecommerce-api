@@ -5,8 +5,12 @@ defmodule ApiEcommerce.Auth.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    field :name, :string
     field :email, :string
-    field :is_active, :boolean, default: false
+    field :role, RoleEnum, default: 0
+    field :status, StatusEnum, default: 0
+    field :recovery_token, :string
+    field :recovery_token_created_at, :naive_datetime
     field :password_hash, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
