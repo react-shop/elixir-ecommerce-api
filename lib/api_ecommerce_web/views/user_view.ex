@@ -18,6 +18,11 @@ defmodule ApiEcommerceWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id, email: user.email, status: user.status}
+    %{
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      status: user.status
+    }
   end
 end

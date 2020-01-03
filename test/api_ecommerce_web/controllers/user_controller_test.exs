@@ -43,7 +43,8 @@ defmodule ApiEcommerceWeb.UserControllerTest do
                %{
                  "id" => current_user.id,
                  "email" => current_user.email,
-                 "status" => current_user.status |> Atom.to_string()
+                 "status" => current_user.status |> Atom.to_string(),
+                 "role" => current_user.role |> Atom.to_string()
                }
              ]
     end
@@ -60,6 +61,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
                "id" => id,
                "email" => @create_attrs.email,
                "status" => "active",
+               "role" => "member"
              }
     end
 
@@ -81,7 +83,8 @@ defmodule ApiEcommerceWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
                "id" => id,
                "email" => @update_attrs.email,
-               "status" => user.status |> Atom.to_string()
+               "status" => user.status |> Atom.to_string(),
+               "role" => user.role |> Atom.to_string()
              }
     end
 
@@ -111,8 +114,9 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
       assert json_response(conn, 200)["data"] == %{
                "id" => current_user.id,
+               "email" => current_user.email,
                "status" => current_user.status |> Atom.to_string(),
-               "email" => current_user.email}
+               "role" => current_user.role |> Atom.to_string()}
     end
 
     test "renders errors when user credentials are bad", %{conn: conn} do
