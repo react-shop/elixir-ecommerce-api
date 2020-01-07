@@ -12,7 +12,7 @@ defmodule ApiEcommerce.Guardian do
 
   def resource_from_claims(claims) do
     id = claims["sub"]
-    resource = MyApi.Accounts.get_user!(id)
+    resource = ApiEcommerce.Auth.get_user!(id)
     {:ok,  resource}
   end
 

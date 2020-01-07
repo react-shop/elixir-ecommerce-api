@@ -34,12 +34,17 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
   setup %{conn: conn} do
     {:ok, conn: conn, current_user: current_user} = setup_current_user(conn)
-    {:ok, conn: put_req_header(conn, "accept", "application/json"), current_user: current_user}
+    {:ok, token, _} = Guardian.encode_and_sign(current_user)
+    {:ok, conn: put_req_header(conn, "accept", "application/json"), current_user: current_user, token: token}
   end
 
   describe "index" do
-    test "lists all users", %{conn: conn, current_user: current_user} do
-      conn = get(conn, Routes.user_path(conn, :index))
+    test "lists all users", %{conn: conn, current_user: current_user, token: token} do
+
+      conn = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> get(Routes.user_path(conn, :index))
+
       assert json_response(conn, 200)["data"] == [
                %{
                  "id" => current_user.id,
@@ -52,13 +57,15 @@ defmodule ApiEcommerceWeb.UserControllerTest do
   end
 
   describe "create user" do
-    test "renders user when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+    test "renders user when data is valid", %{conn: conn, token: token} do
+      request1 = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
+      assert %{"id" => id} = json_response(request1, 201)["data"]
 
-      conn = get(conn, Routes.user_path(conn, :show, id))
+      request2 = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> get(Routes.user_path(conn, :show, id))
 
-      assert json_response(conn, 200)["data"] == %{
+      assert json_response(request2, 200)["data"] == %{
                "id" => id,
                "email" => @create_attrs.email,
                "status" => "active",
@@ -75,13 +82,18 @@ defmodule ApiEcommerceWeb.UserControllerTest do
   describe "update user" do
     setup [:create_user]
 
-    test "renders user when data is valid", %{conn: conn, user: %User{id: id} = user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+    test "renders user when data is valid", %{conn: conn, user: %User{id: id} = user, token: token} do
+      request1 = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> put(Routes.user_path(conn, :update, user), user: @update_attrs)
 
-      conn = get(conn, Routes.user_path(conn, :show, id))
+      assert %{"id" => ^id} = json_response(request1, 200)["data"]
 
-      assert json_response(conn, 200)["data"] == %{
+      request2 = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> get(Routes.user_path(conn, :show, id))
+
+      assert json_response(request2, 200)["data"] == %{
                "id" => id,
                "email" => @update_attrs.email,
                "status" => user.status |> Atom.to_string(),
@@ -89,8 +101,10 @@ defmodule ApiEcommerceWeb.UserControllerTest do
              }
     end
 
-    test "renders errors when data is invalid", %{conn: conn, user: user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @invalid_attrs)
+    test "renders errors when data is invalid", %{conn: conn, user: user, token: token} do
+      conn = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> put(Routes.user_path(conn, :update, user), user: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -98,8 +112,10 @@ defmodule ApiEcommerceWeb.UserControllerTest do
   describe "delete user" do
     setup [:create_user]
 
-    test "deletes chosen user", %{conn: conn, user: user} do
-      conn = delete(conn, Routes.user_path(conn, :delete, user))
+    test "deletes chosen user", %{conn: conn, user: user, token: token} do
+      conn = conn
+             |> put_req_header("authorization", "bearer: " <> token)
+             |> delete(Routes.user_path(conn, :delete, user))
       assert response(conn, 204)
 
       assert_error_sent 404, fn ->
@@ -111,7 +127,10 @@ defmodule ApiEcommerceWeb.UserControllerTest do
   describe "sign_in user" do
     test "renders user when user credentials are good", %{conn: conn, current_user: current_user} do
       conn =
-        post(conn, Routes.user_path(conn, :sign_in, %{ email: current_user.email, password: @current_user_attrs.password}))
+        post(
+          conn,
+          Routes.user_path(conn, :sign_in, %{email: current_user.email, password: @current_user_attrs.password})
+        )
 
       assert json_response(conn, 200)["data"]["id"] == current_user.id
       assert json_response(conn, 200)["data"]["email"] == current_user.email
