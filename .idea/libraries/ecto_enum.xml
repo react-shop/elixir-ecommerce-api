@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ecto_enum" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ecto_enum/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/ecto_enum/ebin" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/ecto_enum/lib" />
+    </SOURCES>
+  </library>
+</component>

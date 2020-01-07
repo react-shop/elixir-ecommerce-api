@@ -5,8 +5,12 @@ defmodule ApiEcommerce.Auth.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    field :name, :string
     field :email, :string
-    field :is_active, :boolean, default: false
+    field :role, RoleEnum, default: :member
+    field :status, StatusEnum, default: :active
+    field :recovery_token, :string
+    field :recovery_token_created_at, :naive_datetime
     field :password_hash, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -17,8 +21,8 @@ defmodule ApiEcommerce.Auth.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :is_active, :password])
-    |> validate_required([:email, :is_active, :password])
+    |> cast(attrs, [:name, :email, :status, :role, :password, :password_confirmation])
+    |> validate_required([:email, :status, :role, :password, :password_confirmation])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 6)
     |> validate_confirmation(:password) # Check that password === password_confirmation
@@ -27,7 +31,9 @@ defmodule ApiEcommerce.Auth.User do
   end
 
   defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    change(changeset, Bcrypt.add_hash(password))
+    changeset
+    |> change(Bcrypt.add_hash(password))
+    |> change(%{password_confirmation: nil})
   end
 
   defp put_password_hash(changeset) do

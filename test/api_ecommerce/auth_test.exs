@@ -7,14 +7,18 @@ defmodule ApiEcommerce.AuthTest do
     alias ApiEcommerce.Auth.User
 
     @valid_attrs %{
+      name: "some name",
       email: "some@email",
-      is_active: true,
+      status: :active,
+      role: :member,
       password: "some password",
       password_confirmation: "some password"
     }
     @update_attrs %{
+      name: "some updated name",
       email: "some@updated.email",
-      is_active: false,
+      status: :deleted,
+      role: :admin,
       password: "some updated password",
       password_confirmation: "some updated password"
     }
@@ -41,8 +45,10 @@ defmodule ApiEcommerce.AuthTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Auth.create_user(@valid_attrs)
+      assert user.name == @valid_attrs.name
       assert user.email == @valid_attrs.email
-      assert user.is_active == @valid_attrs.is_active
+      assert user.status == @valid_attrs.status
+      assert user.role == @valid_attrs.role
       assert Bcrypt.verify_pass(@valid_attrs.password, user.password_hash)
     end
 
@@ -53,8 +59,10 @@ defmodule ApiEcommerce.AuthTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Auth.update_user(user, @update_attrs)
+      assert user.name == @update_attrs.name
       assert user.email == @update_attrs.email
-      assert user.is_active == @update_attrs.is_active
+      assert user.status == @update_attrs.status
+      assert user.role == @update_attrs.role
       assert Bcrypt.verify_pass(@update_attrs.password, user.password_hash)
     end
 
@@ -79,8 +87,8 @@ defmodule ApiEcommerce.AuthTest do
     test "authenticate_user/2 authenticates the user" do
       user = user_fixture()
       assert {:error, "Wrong username or password"} = Auth.authenticate_user("wrong email", "")
-      assert {:ok, authenticated_user} = Auth.authenticate_user(user.email, @valid_attrs.password)
-      assert %{user | password: nil} == authenticated_user
+      assert {:ok, authenticated_user, token} = Auth.authenticate_user(user.email, @valid_attrs.password)
+      assert %{user | password: nil, password_confirmation: nil} == authenticated_user
     end
   end
 end

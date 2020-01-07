@@ -19,10 +19,13 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/db_connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_enum" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/elixir_make" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gettext" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/guardian" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jose" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mime" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/myxql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix" />
@@ -38,10 +41,13 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/db_connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto_enum" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ecto_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/elixir_make" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/gettext" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/guardian" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/jose" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/mime" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/myxql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/phoenix" />
@@ -99,5 +105,7 @@
     <orderEntry type="library" name="libsodium" level="project" />
     <orderEntry type="library" name="ojson" level="project" />
     <orderEntry type="library" name="poison" level="project" />
+    <orderEntry type="library" name="ecto_enum" level="project" />
+    <orderEntry type="library" name="mariaex" level="project" />
   </component>
 </module>

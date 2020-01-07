@@ -44,6 +44,7 @@ defmodule ApiEcommerce.MixProject do
 
       {:bcrypt_elixir, "~> 2.0"},
       {:guardian, "~> 1.0"},
+      {:ecto_enum, "~> 1.4"},
     ]
   end
 

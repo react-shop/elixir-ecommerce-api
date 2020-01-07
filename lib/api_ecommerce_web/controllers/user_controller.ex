@@ -3,21 +3,22 @@ defmodule ApiEcommerceWeb.UserController do
 
   alias ApiEcommerce.Auth
   alias ApiEcommerce.Auth.User
+  alias ApiEcommerce.Guardian
 
   action_fallback ApiEcommerceWeb.FallbackController
 
   def index(conn, _params) do
     users = Auth.list_users()
-    user = get_session(conn, :current_user_id)
-    render(conn, "index.json", users: users, user: user)
+    render(conn, "index.json", users: users)
   end
 
   def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Auth.create_user(user_params) do
+    with {:ok, %User{} = user} <- Auth.create_user(user_params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
-      |> render("show.json", user: user)
+      |> render("sign_up.json", user: user, token: token)
     end
   end
 
@@ -44,11 +45,11 @@ defmodule ApiEcommerceWeb.UserController do
 
   def sign_in(conn, %{"email" => email, "password" => password}) do
     case ApiEcommerce.Auth.authenticate_user(email, password) do
-      {:ok, user} ->
+      {:ok, user, token} ->
         conn
         |> put_status(:ok)
         |> put_view(ApiEcommerceWeb.UserView)
-        |> render("sign_in.json", user: user)
+        |> render("sign_in.json", user: user, token: token)
 
       {:error, message} ->
         conn
