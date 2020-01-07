@@ -87,7 +87,7 @@ defmodule ApiEcommerce.AuthTest do
     test "authenticate_user/2 authenticates the user" do
       user = user_fixture()
       assert {:error, "Wrong username or password"} = Auth.authenticate_user("wrong email", "")
-      assert {:ok, authenticated_user} = Auth.authenticate_user(user.email, @valid_attrs.password)
+      assert {:ok, authenticated_user, token} = Auth.authenticate_user(user.email, @valid_attrs.password)
       assert %{user | password: nil, password_confirmation: nil} == authenticated_user
     end
   end

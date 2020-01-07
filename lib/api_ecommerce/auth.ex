@@ -4,9 +4,10 @@ defmodule ApiEcommerce.Auth do
   """
 
   import Ecto.Query, warn: false
-  alias ApiEcommerce.Repo
 
+  alias ApiEcommerce.Repo
   alias ApiEcommerce.Auth.User
+  alias ApiEcommerce.Guardian
 
   @doc """
   Returns the list of users.
@@ -107,6 +108,7 @@ defmodule ApiEcommerce.Auth do
     query
     |> Repo.one()
     |> verify_password(password)
+    |> gen_token()
   end
 
   defp verify_password(nil, _) do
@@ -116,9 +118,20 @@ defmodule ApiEcommerce.Auth do
 
   defp verify_password(user, password) do
     if Bcrypt.verify_pass(password, user.password_hash) do
-      {:ok, user}
+      user
     else
       {:error, "Wrong username or password"}
     end
+  end
+
+  defp gen_token(%User{} = user) do
+    case Guardian.encode_and_sign(user) do
+      {:ok, token, _claims} -> {:ok, user, token}
+      _ -> {:error, :unauthorized}
+    end
+  end
+
+  defp gen_token(error) do
+    error
   end
 end

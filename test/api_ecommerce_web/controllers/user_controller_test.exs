@@ -3,6 +3,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
   alias ApiEcommerce.Auth
   alias ApiEcommerce.Auth.User
+  alias ApiEcommerce.Guardian
 
   @create_attrs %{
     email: "some@email",
@@ -112,11 +113,11 @@ defmodule ApiEcommerceWeb.UserControllerTest do
       conn =
         post(conn, Routes.user_path(conn, :sign_in, %{ email: current_user.email, password: @current_user_attrs.password}))
 
-      assert json_response(conn, 200)["data"] == %{
-               "id" => current_user.id,
-               "email" => current_user.email,
-               "status" => current_user.status |> Atom.to_string(),
-               "role" => current_user.role |> Atom.to_string()}
+      assert json_response(conn, 200)["data"]["id"] == current_user.id
+      assert json_response(conn, 200)["data"]["email"] == current_user.email
+      assert json_response(conn, 200)["data"]["status"] == current_user.status |> Atom.to_string()
+      assert json_response(conn, 200)["data"]["role"] == current_user.role |> Atom.to_string()
+      assert {:ok, claims} = Guardian.decode_and_verify(json_response(conn, 200)["data"]["token"])
     end
 
     test "renders errors when user credentials are bad", %{conn: conn} do
