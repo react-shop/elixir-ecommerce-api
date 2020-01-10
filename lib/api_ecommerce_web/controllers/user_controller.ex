@@ -12,16 +12,6 @@ defmodule ApiEcommerceWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
-  def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Auth.create_user(user_params),
-         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.user_path(conn, :show, user))
-      |> render("sign_up.json", user: user, token: token)
-    end
-  end
-
   def show(conn, %{"id" => id}) do
     user = Auth.get_user!(id)
     render(conn, "show.json", user: user)
@@ -43,7 +33,17 @@ defmodule ApiEcommerceWeb.UserController do
     end
   end
 
-  def sign_in(conn, %{"email" => email, "password" => password}) do
+  def sign_up(conn, user_params) do
+    with {:ok, %User{} = user} <- Auth.create_user(user_params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", Routes.user_path(conn, :show, user))
+      |> render("sign_up.json", user: user, token: token)
+    end
+  end
+
+  def sign_in(conn, %{"email" => email, "password" => password} = _params) do
     case ApiEcommerce.Auth.authenticate_user(email, password) do
       {:ok, user, token} ->
         conn

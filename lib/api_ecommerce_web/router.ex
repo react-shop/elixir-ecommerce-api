@@ -14,8 +14,8 @@ defmodule ApiEcommerceWeb.Router do
   scope "/v1", ApiEcommerceWeb do
     pipe_through :api
 
-    post "/users/sign_in", UserController, :sign_in
-    post "/users/sign_up", UserController, :create
+    post "/auth/sign_in", UserController, :sign_in
+    post "/auth/sign_up", UserController, :sign_up
   end
 
   scope "/v1", ApiEcommerceWeb do

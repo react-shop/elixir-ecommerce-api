@@ -58,7 +58,7 @@ defmodule ApiEcommerceWeb.UserControllerTest do
 
   describe "create user" do
     test "renders user when data is valid", %{conn: conn, token: token} do
-      request1 = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
+      request1 = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
       assert %{"id" => id} = json_response(request1, 201)["data"]
 
       request2 = conn
@@ -73,8 +73,14 @@ defmodule ApiEcommerceWeb.UserControllerTest do
              }
     end
 
+    test "renders error when email is already taken", %{conn: conn} do
+      conn = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
+      conn = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
+      assert json_response(conn, 422)["errors"] == %{"email" => ["has already been taken"]}
+    end
+
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @invalid_attrs)
+      conn = post(conn, Routes.user_path(conn, :sign_up), @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

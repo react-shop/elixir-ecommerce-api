@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="params" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/params/ebin" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/params/lib" />
+    </SOURCES>
+  </library>
+</component>

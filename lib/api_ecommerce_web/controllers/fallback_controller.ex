@@ -13,10 +13,10 @@ defmodule ApiEcommerceWeb.FallbackController do
     |> render(:"404")
   end
 
-  def call(conn, {:error, %Ecto.Changeset{}}) do
+  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(ApiEcommerceWeb.ErrorView)
-    |> render(:"422")
+    |> put_view(ApiEcommerceWeb.ChangesetView)
+    |> render("error.json", changeset: changeset)
   end
 end
