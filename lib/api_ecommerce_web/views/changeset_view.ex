@@ -1,11 +1,11 @@
-defmodule ApiEcommerceWeb.ChangesetView do
-  use ApiEcommerceWeb, :view
+defmodule EcommerceApiWeb.ChangesetView do
+  use EcommerceApiWeb, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `ApiEcommerceWeb.ErrorHelpers.translate_error/1` for more details.
+  `EcommerceApiWeb.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

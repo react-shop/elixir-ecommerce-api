@@ -1,7 +1,7 @@
-defmodule ApiEcommerce.Guardian.AuthPipeline do
-  use Guardian.Plug.Pipeline, otp_app: :api_ecommerce,
-                              module: ApiEcommerce.Guardian,
-                              error_handler: ApiEcommerce.AuthErrorHandler
+defmodule EcommerceApi.Guardian.AuthPipeline do
+  use Guardian.Plug.Pipeline, otp_app: :ecommerce_api,
+                              module: EcommerceApi.Guardian,
+                              error_handler: EcommerceApi.AuthErrorHandler
 
   plug Guardian.Plug.VerifyHeader, realm: "Bearer"
   plug Guardian.Plug.EnsureAuthenticated

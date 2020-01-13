@@ -1,4 +1,4 @@
-defmodule ApiEcommerceWeb.ConnCase do
+defmodule EcommerceApiWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule ApiEcommerceWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ApiEcommerceWeb.ConnCase, async: true`, although
+  by setting `use EcommerceApiWeb.ConnCase, async: true`, although
   this option is not recommendded for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule ApiEcommerceWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias ApiEcommerceWeb.Router.Helpers, as: Routes
+      alias EcommerceApiWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint ApiEcommerceWeb.Endpoint
+      @endpoint EcommerceApiWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ApiEcommerce.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EcommerceApi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ApiEcommerce.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(EcommerceApi.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

@@ -1,5 +1,5 @@
-defmodule ApiEcommerceWeb.ErrorView do
-  use ApiEcommerceWeb, :view
+defmodule EcommerceApiWeb.ErrorView do
+  use EcommerceApiWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

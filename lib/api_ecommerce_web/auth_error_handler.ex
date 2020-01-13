@@ -1,4 +1,4 @@
-defmodule ApiEcommerce.AuthErrorHandler do
+defmodule EcommerceApi.AuthErrorHandler do
   import Plug.Conn
 
   @behaviour Guardian.Plug.ErrorHandler

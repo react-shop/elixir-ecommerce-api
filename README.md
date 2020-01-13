@@ -1,4 +1,4 @@
-# ApiEcommerce
+# EcommerceApi
 
 To start your Phoenix server:
 

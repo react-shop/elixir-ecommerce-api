@@ -1,9 +1,9 @@
-defmodule ApiEcommerce.MixProject do
+defmodule EcommerceApi.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :api_ecommerce,
+      app: :ecommerce_api,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule ApiEcommerce.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {ApiEcommerce.Application, []},
+      mod: {EcommerceApi.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

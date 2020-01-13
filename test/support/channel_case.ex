@@ -1,4 +1,4 @@
-defmodule ApiEcommerceWeb.ChannelCase do
+defmodule EcommerceApiWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule ApiEcommerceWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint ApiEcommerceWeb.Endpoint
+      @endpoint EcommerceApiWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ApiEcommerce.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EcommerceApi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ApiEcommerce.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(EcommerceApi.Repo, {:shared, self()})
     end
 
     :ok

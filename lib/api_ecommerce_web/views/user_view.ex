@@ -1,6 +1,6 @@
-defmodule ApiEcommerceWeb.UserView do
-  use ApiEcommerceWeb, :view
-  alias ApiEcommerceWeb.UserView
+defmodule EcommerceApiWeb.UserView do
+  use EcommerceApiWeb, :view
+  alias EcommerceApiWeb.UserView
 
   def render("index.json", %{users: users}) do
     %{data: render_many(users, UserView, "user.json")}
@@ -8,14 +8,6 @@ defmodule ApiEcommerceWeb.UserView do
 
   def render("show.json", %{user: user}) do
     %{data: render_one(user, UserView, "user.json")}
-  end
-
-  def render("sign_in.json", %{user: user, token: token}) do
-    %{data: Map.merge(render_one(user, UserView, "user.json"), %{token: token})}
-  end
-
-  def render("sign_up.json", %{user: user, token: token}) do
-    %{data: Map.merge(render_one(user, UserView, "user.json"), %{token: token})}
   end
 
   def render("user.json", %{user: user}) do

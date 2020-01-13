@@ -1,4 +1,4 @@
-defmodule ApiEcommerce.DataCase do
+defmodule EcommerceApi.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule ApiEcommerce.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ApiEcommerceWeb.DataCase, async: true`, although
+  by setting `use EcommerceApiWeb.DataCase, async: true`, although
   this option is not recommendded for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule ApiEcommerce.DataCase do
 
   using do
     quote do
-      alias ApiEcommerce.Repo
+      alias EcommerceApi.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import ApiEcommerce.DataCase
+      import EcommerceApi.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ApiEcommerce.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EcommerceApi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ApiEcommerce.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(EcommerceApi.Repo, {:shared, self()})
     end
 
     :ok

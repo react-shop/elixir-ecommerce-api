@@ -1,7 +1,7 @@
-defmodule ApiEcommerceWeb.Router do
-  use ApiEcommerceWeb, :router
+defmodule EcommerceApiWeb.Router do
+  use EcommerceApiWeb, :router
 
-  alias ApiEcommerce.Guardian
+  alias EcommerceApi.Guardian
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -11,14 +11,15 @@ defmodule ApiEcommerceWeb.Router do
     plug Guardian.AuthPipeline
   end
 
-  scope "/v1", ApiEcommerceWeb do
+  scope "/v1", EcommerceApiWeb do
     pipe_through :api
 
-    post "/auth/sign_in", UserController, :sign_in
-    post "/auth/sign_up", UserController, :sign_up
+    post "/auth/sign_in", AuthController, :sign_in
+    post "/auth/sign_up", AuthController, :sign_up
+    post "/auth/forgot_password", AuthController, :forgot_password
   end
 
-  scope "/v1", ApiEcommerceWeb do
+  scope "/v1", EcommerceApiWeb do
     pipe_through [:api, :auth]
 
     resources "/users", UserController, except: [:new, :create, :edit]

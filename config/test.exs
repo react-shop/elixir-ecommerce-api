@@ -1,16 +1,16 @@
 use Mix.Config
 
 # Configure your database
-config :api_ecommerce, ApiEcommerce.Repo,
+config :ecommerce_api, EcommerceApi.Repo,
   username: "admin",
   password: "admin",
-  database: "api_ecommerce_test",
+  database: "ecommerce_api_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :api_ecommerce, ApiEcommerceWeb.Endpoint,
+config :ecommerce_api, EcommerceApiWeb.Endpoint,
   http: [port: 4002],
   server: false
 

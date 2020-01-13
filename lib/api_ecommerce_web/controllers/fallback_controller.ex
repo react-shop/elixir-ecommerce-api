@@ -1,22 +1,22 @@
-defmodule ApiEcommerceWeb.FallbackController do
+defmodule EcommerceApiWeb.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.
 
   See `Phoenix.Controller.action_fallback/1` for more details.
   """
-  use ApiEcommerceWeb, :controller
+  use EcommerceApiWeb, :controller
 
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(ApiEcommerceWeb.ErrorView)
+    |> put_view(EcommerceApiWeb.ErrorView)
     |> render(:"404")
   end
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(ApiEcommerceWeb.ChangesetView)
+    |> put_view(EcommerceApiWeb.ChangesetView)
     |> render("error.json", changeset: changeset)
   end
 end

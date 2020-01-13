@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :api_ecommerce, ApiEcommerce.Repo,
+config :ecommerce_api, EcommerceApi.Repo,
   username: "admin",
   password: "admin",
-  database: "api_ecommerce_dev",
+  database: "ecommerce_api_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :api_ecommerce, ApiEcommerce.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :api_ecommerce, ApiEcommerceWeb.Endpoint,
+config :ecommerce_api, EcommerceApiWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,

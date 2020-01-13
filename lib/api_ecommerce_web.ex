@@ -1,12 +1,12 @@
-defmodule ApiEcommerceWeb do
+defmodule EcommerceApiWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use ApiEcommerceWeb, :controller
-      use ApiEcommerceWeb, :view
+      use EcommerceApiWeb, :controller
+      use EcommerceApiWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,26 +19,26 @@ defmodule ApiEcommerceWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: ApiEcommerceWeb
+      use Phoenix.Controller, namespace: EcommerceApiWeb
 
       import Plug.Conn
-      import ApiEcommerceWeb.Gettext
-      alias ApiEcommerceWeb.Router.Helpers, as: Routes
+      import EcommerceApiWeb.Gettext
+      alias EcommerceApiWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/api_ecommerce_web/templates",
-        namespace: ApiEcommerceWeb
+        root: "lib/ecommerce_api_web/templates",
+        namespace: EcommerceApiWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
-      import ApiEcommerceWeb.ErrorHelpers
-      import ApiEcommerceWeb.Gettext
-      alias ApiEcommerceWeb.Router.Helpers, as: Routes
+      import EcommerceApiWeb.ErrorHelpers
+      import EcommerceApiWeb.Gettext
+      alias EcommerceApiWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -53,7 +53,7 @@ defmodule ApiEcommerceWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import ApiEcommerceWeb.Gettext
+      import EcommerceApiWeb.Gettext
     end
   end
 

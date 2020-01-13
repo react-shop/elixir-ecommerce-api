@@ -1,13 +1,13 @@
-defmodule ApiEcommerce.Auth do
+defmodule EcommerceApi.Accounts do
   @moduledoc """
-  The Auth context.
+  The Accounts context.
   """
 
   import Ecto.Query, warn: false
 
-  alias ApiEcommerce.Repo
-  alias ApiEcommerce.Auth.User
-  alias ApiEcommerce.Guardian
+  alias EcommerceApi.Repo
+  alias EcommerceApi.Accounts.User
+  alias EcommerceApi.Guardian
 
   @doc """
   Returns the list of users.

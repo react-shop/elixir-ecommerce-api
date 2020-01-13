@@ -7,19 +7,19 @@
 # General application configuration
 use Mix.Config
 
-config :api_ecommerce,
-  ecto_repos: [ApiEcommerce.Repo],
+config :ecommerce_api,
+  ecto_repos: [EcommerceApi.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :api_ecommerce, ApiEcommerceWeb.Endpoint,
+config :ecommerce_api, EcommerceApiWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "xpSGNOCTXLgEQy1K1X+Q9aGfZZXx5Y37FxaXsUgrqf/zKk4KZwpPDCK0nWlUNrOh",
-  render_errors: [view: ApiEcommerceWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: ApiEcommerce.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: EcommerceApiWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: EcommerceApi.PubSub, adapter: Phoenix.PubSub.PG2]
 
-config :api_ecommerce, ApiEcommerce.Guardian,
-  issuer: "api_ecommerce",
+config :ecommerce_api, EcommerceApi.Guardian,
+  issuer: "ecommerce_api",
   secret_key: "RFl88y/O+rrGqRzWwdTGpsF68o07jhz60tfUnh0mTKhkGpeGo3Adzc8+xDuxXyd5"
 
 # Configures Elixir's Logger

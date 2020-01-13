@@ -1,7 +1,7 @@
-defmodule ApiEcommerceWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :api_ecommerce
+defmodule EcommerceApiWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :ecommerce_api
 
-  socket "/socket", ApiEcommerceWeb.UserSocket,
+  socket "/socket", EcommerceApiWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -11,7 +11,7 @@ defmodule ApiEcommerceWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :api_ecommerce,
+    from: :ecommerce_api,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -37,8 +37,8 @@ defmodule ApiEcommerceWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_api_ecommerce_key",
+    key: "_ecommerce_api_key",
     signing_salt: "RUXh0u9W"
 
-  plug ApiEcommerceWeb.Router
+  plug EcommerceApiWeb.Router
 end

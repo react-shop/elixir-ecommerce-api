@@ -1,9 +1,9 @@
-defmodule ApiEcommerceWeb.UserControllerTest do
-  use ApiEcommerceWeb.ConnCase
+defmodule EcommerceApiWeb.UserControllerTest do
+  use EcommerceApiWeb.ConnCase
 
-  alias ApiEcommerce.Auth
-  alias ApiEcommerce.Auth.User
-  alias ApiEcommerce.Guardian
+  alias EcommerceApi.Accounts
+  alias EcommerceApi.Accounts.User
+  alias EcommerceApi.Guardian
 
   @create_attrs %{
     email: "some@email",
@@ -23,12 +23,12 @@ defmodule ApiEcommerceWeb.UserControllerTest do
   }
 
   def fixture(:user) do
-    {:ok, user} = Auth.create_user(@create_attrs)
+    {:ok, user} = Accounts.create_user(@create_attrs)
     user
   end
 
   def fixture(:current_user) do
-    {:ok, current_user} = Auth.create_user(@current_user_attrs)
+    {:ok, current_user} = Accounts.create_user(@current_user_attrs)
     current_user
   end
 
@@ -53,35 +53,6 @@ defmodule ApiEcommerceWeb.UserControllerTest do
                  "role" => current_user.role |> Atom.to_string()
                }
              ]
-    end
-  end
-
-  describe "create user" do
-    test "renders user when data is valid", %{conn: conn, token: token} do
-      request1 = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
-      assert %{"id" => id} = json_response(request1, 201)["data"]
-
-      request2 = conn
-             |> put_req_header("authorization", "bearer: " <> token)
-             |> get(Routes.user_path(conn, :show, id))
-
-      assert json_response(request2, 200)["data"] == %{
-               "id" => id,
-               "email" => @create_attrs.email,
-               "status" => "active",
-               "role" => "member"
-             }
-    end
-
-    test "renders error when email is already taken", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
-      conn = post(conn, Routes.user_path(conn, :sign_up), @create_attrs)
-      assert json_response(conn, 422)["errors"] == %{"email" => ["has already been taken"]}
-    end
-
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :sign_up), @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
     end
   end
 
@@ -127,29 +98,6 @@ defmodule ApiEcommerceWeb.UserControllerTest do
       assert_error_sent 404, fn ->
         get(conn, Routes.user_path(conn, :show, user))
       end
-    end
-  end
-
-  describe "sign_in user" do
-    test "renders user when user credentials are good", %{conn: conn, current_user: current_user} do
-      conn =
-        post(
-          conn,
-          Routes.user_path(conn, :sign_in, %{email: current_user.email, password: @current_user_attrs.password})
-        )
-
-      assert json_response(conn, 200)["data"]["id"] == current_user.id
-      assert json_response(conn, 200)["data"]["email"] == current_user.email
-      assert json_response(conn, 200)["data"]["status"] == current_user.status |> Atom.to_string()
-      assert json_response(conn, 200)["data"]["role"] == current_user.role |> Atom.to_string()
-      assert {:ok, claims} = Guardian.decode_and_verify(json_response(conn, 200)["data"]["token"])
-    end
-
-    test "renders errors when user credentials are bad", %{conn: conn} do
-      conn =
-        post(conn, Routes.user_path(conn, :sign_in, %{email: "non-existent email", password: ""}))
-
-      assert json_response(conn, 401)["errors"] == %{"detail" => "Wrong username or password"}
     end
   end
 

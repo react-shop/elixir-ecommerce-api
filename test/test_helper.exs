@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(ApiEcommerce.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(EcommerceApi.Repo, :manual)

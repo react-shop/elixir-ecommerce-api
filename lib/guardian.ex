@@ -1,5 +1,5 @@
-defmodule ApiEcommerce.Guardian do
-  use Guardian, otp_app: :api_ecommerce
+defmodule EcommerceApi.Guardian do
+  use Guardian, otp_app: :ecommerce_api
 
   def subject_for_token(user, _claims) do
     sub = to_string(user.id)
@@ -12,7 +12,7 @@ defmodule ApiEcommerce.Guardian do
 
   def resource_from_claims(claims) do
     id = claims["sub"]
-    resource = ApiEcommerce.Auth.get_user!(id)
+    resource = EcommerceApi.Accounts.get_user!(id)
     {:ok,  resource}
   end
 
