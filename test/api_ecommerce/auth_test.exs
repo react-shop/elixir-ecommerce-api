@@ -22,7 +22,7 @@ defmodule ApiEcommerce.AuthTest do
       password: "some updated password",
       password_confirmation: "some updated password"
     }
-    @invalid_attrs %{email: nil, is_active: nil, password: nil}
+    @invalid_attrs %{email: nil, status: nil, password: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -35,12 +35,13 @@ defmodule ApiEcommerce.AuthTest do
 
     test "list_users/0 returns all users" do
       user = user_fixture()
-      assert Auth.list_users() == [user]
+      assert Auth.list_users() |> Enum.map(fn x -> x.email end) |> to_string =~ user.email
     end
 
     test "get_user!/1 returns the user with given id" do
       user = user_fixture()
-      assert Auth.get_user!(user.id) == user
+      assert Auth.get_user!(user.id).id == user.id
+      assert Auth.get_user!(user.id).email == user.email
     end
 
     test "create_user/1 with valid data creates a user" do
@@ -69,7 +70,9 @@ defmodule ApiEcommerce.AuthTest do
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
       assert {:error, %Ecto.Changeset{}} = Auth.update_user(user, @invalid_attrs)
-      assert user == Auth.get_user!(user.id)
+      user1 = Auth.get_user!(user.id)
+      assert user.email == user1.email
+      assert user.status == user1.status
       assert Bcrypt.verify_pass(@valid_attrs.password, user.password_hash)
     end
 
@@ -87,7 +90,10 @@ defmodule ApiEcommerce.AuthTest do
     test "authenticate_user/2 authenticates the user" do
       user = user_fixture()
       assert {:error, "Wrong username or password"} = Auth.authenticate_user("wrong email", "")
-      assert {:ok, authenticated_user, token} = Auth.authenticate_user(user.email, @valid_attrs.password)
+
+      assert {:ok, authenticated_user, token} =
+               Auth.authenticate_user(user.email, @valid_attrs.password)
+
       assert %{user | password: nil, password_confirmation: nil} == authenticated_user
     end
   end
