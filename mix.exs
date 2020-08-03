@@ -33,18 +33,17 @@ defmodule ApiEcommerce.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.11"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5.4"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.1"},
+      {:ecto_sql, "~> 3.4.5"},
       {:myxql, ">= 0.0.0"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-
-      {:bcrypt_elixir, "~> 2.0"},
-      {:guardian, "~> 1.0"},
-      {:ecto_enum, "~> 1.4"},
+      {:gettext, "~> 0.18.0"},
+      {:jason, "~> 1.2.1"},
+      {:plug_cowboy, "~>  2.3.0"},
+      {:bcrypt_elixir, "~>  2.2.0"},
+      {:guardian, "~> 2.1.1"},
+      {:ecto_enum, "~> 1.4"}
     ]
   end
 

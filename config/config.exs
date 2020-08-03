@@ -16,7 +16,7 @@ config :api_ecommerce, ApiEcommerceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "xpSGNOCTXLgEQy1K1X+Q9aGfZZXx5Y37FxaXsUgrqf/zKk4KZwpPDCK0nWlUNrOh",
   render_errors: [view: ApiEcommerceWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: ApiEcommerce.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: MyApp.PubSub
 
 config :api_ecommerce, ApiEcommerce.Guardian,
   issuer: "api_ecommerce",
