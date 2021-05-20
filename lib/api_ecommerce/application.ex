@@ -10,6 +10,8 @@ defmodule ApiEcommerce.Application do
     children = [
       # Start the Ecto repository
       ApiEcommerce.Repo,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: MyApp.PubSub},
       # Start the endpoint when the application starts
       ApiEcommerceWeb.Endpoint
       # Starts a worker by calling: ApiEcommerce.Worker.start_link(arg)
